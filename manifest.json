@@ -1,0 +1,14 @@
+{
+  "name": "Live Translation",
+  "description": "Translates pages",
+  "version": "1.0",
+  "manifest_version": 2,
+  "permissions": ["tabs", "*://*/*"],
+  "content_scripts": [
+    {
+      "matches": ["http://*/*", "https://*/*"],
+      "js": ["main.js"],
+      "run_at": "document_start"
+    }
+  ]
+}
