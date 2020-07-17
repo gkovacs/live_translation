@@ -86,12 +86,14 @@
     function replaceAllTextNodesUnder(rootElem) {
         var n, walk=document.createTreeWalker(rootElem,NodeFilter.SHOW_TEXT,null,false);
         while(n=walk.nextNode()) {
-            if (n.seen) continue;
-            n.seen = true;
+            if (n.replacedTextContent === n.textContent) {
+                continue;
+            }
             if (n.parentElement.nodeName === 'STYLE' || n.parentElement.nodeName === 'SCRIPT') {
                 continue
             }
-            n.textContent = replaceWithTranslation(n.textContent);
+            n.replacedTextContent = replaceWithTranslation(n.textContent);
+            n.textContent = n.replacedTextContent
         }
     }
     function replaceAllTextNodes() {
